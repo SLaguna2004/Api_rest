@@ -75,7 +75,7 @@ conexion.connect(function(error){
         });
     });
 
-    app.put('/apirest/productos/:id',(req,res)=>{
+    app.delete('/apirest/productos/:id',(req,res)=>{
         const id = req.params.id;
         const sql = `DELETE FROM productos WHERE id = ${id}`;
         conexion.query(sql, (error,results) => {
