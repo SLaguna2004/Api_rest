@@ -38,3 +38,14 @@ conexion.connect(function(error){
             }
         });
     });
+
+    app.get('/apijs/productos/:id', (req,res)=>{
+        conexion.query('SELECT * FROM productos WHERE id=?', [req.params.id] , (error,fila)=>{
+            if(error){
+                throw error;
+            }else{
+                res.send(fila);
+            res.send(fila[0].descripción);  // para traer un solo resgistro “ descripción”
+            }
+        });
+    });
