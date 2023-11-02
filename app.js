@@ -51,8 +51,8 @@ conexion.connect(function(error){
     });
 
     app.post('/apirest/productos',(req,res)=>{
-        let data = {id:req.body.id, descripcion: req.body.descripcion, precio: req.body.precio, stock: req.body.stock};
-        let sql = "INSERT INTO productos SET ?";
+        const data = {id:req.body.id, descripcion: req.body.descripcion, precio: req.body.precio, stock: req.body.stock};
+        const sql = "INSERT INTO productos SET ?";
         conexion.query(sql, data, function(error,results){
             if(error){
                 throw error;
@@ -66,7 +66,7 @@ conexion.connect(function(error){
         const id = req.params.id;
         const data = {descripcion:req.body.descripcion, precio:req.body.precio, stock:req.body.stock};
         const sql = `UPDATE productos SET? WHERE id = ${id}`;
-        conexion.query(sql, (error,results) => {
+        conexion.query(sql,data, (error,results) => {
             if(error){
                 throw error;
             }else{
