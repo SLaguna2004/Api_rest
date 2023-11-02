@@ -49,3 +49,15 @@ conexion.connect(function(error){
             }
         });
     });
+
+    app.post('/apijs/productos',(req,res)=>{
+        let data = {id:req.body.id, descripcion:req.body.descripcion, precio:req.body.precio, stock:req.body.stock};
+        let sql = "INSERT INTO productos SET ?";
+        conexion.query(sql, data, function(error,results){
+            if(error){
+                throw error;
+            }else{
+                res.send(results);     
+            }
+        });
+    });
