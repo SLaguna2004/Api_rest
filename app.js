@@ -74,3 +74,15 @@ conexion.connect(function(error){
             }
         });
     });
+
+    app.put('/apijs/productos/:id',(req,res)=>{
+        const id = req.params.id;
+        const sql = `DELETE FROM productos WHERE id = ${id}`;
+        conexion.query(sql, (error,results) => {
+            if(error){
+                throw error;
+            }else{
+                res.send({message: 'Producto eliminado con exito'});
+            }
+        });
+    });
