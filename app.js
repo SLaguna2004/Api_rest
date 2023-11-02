@@ -24,3 +24,7 @@ conexion.connect(function(error){
         console.log('Conexión exitosa');
     }
     });
+
+    app.listen('3000', function(){
+        console.log("Servidor OK en puerto: 3000");
+    })
