@@ -5,7 +5,7 @@ let app = express();
 app.use(express.json());
 
     app.get('', function(req,res){
-        res.send('');
+        res.send('Ruta inicio');
     })
 
 //crear 
@@ -29,7 +29,7 @@ conexion.connect(function(error){
         console.log("Servidor OK en puerto: 3000");
     })
 
-    app.get('/apijs/productos', (req,res)=>{
+    app.get('/apirest/productos', (req,res)=>{
         conexion.query('SELECT * FROM productos', (error,filas)=>{
             if(error){
                 throw error;
@@ -39,7 +39,7 @@ conexion.connect(function(error){
         });
     });
 
-    app.get('/apijs/productos/:id', (req,res)=>{
+    app.get('/apirest/productos/:id', (req,res)=>{
         conexion.query('SELECT * FROM productos WHERE id=?', [req.params.id] , (error,fila)=>{
             if(error){
                 throw error;
@@ -50,7 +50,7 @@ conexion.connect(function(error){
         });
     });
 
-    app.post('/apijs/productos',(req,res)=>{
+    app.post('/apirest/productos',(req,res)=>{
         let data = {id:req.body.id, descripcion: req.body.descripcion, precio: req.body.precio, stock: req.body.stock};
         let sql = "INSERT INTO productos SET ?";
         conexion.query(sql, data, function(error,results){
@@ -62,7 +62,7 @@ conexion.connect(function(error){
         });
     });
 
-    app.put('/apijs/productos/:id',(req,res)=>{
+    app.put('/apirest/productos/:id',(req,res)=>{
         const id = req.params.id;
         const data = {descripcion:req.body.descripcion, precio:req.body.precio, stock:req.body.stock};
         const sql = `UPDATE productos SET? WHERE id = ${id}`;
@@ -75,7 +75,7 @@ conexion.connect(function(error){
         });
     });
 
-    app.put('/apijs/productos/:id',(req,res)=>{
+    app.put('/apirest/productos/:id',(req,res)=>{
         const id = req.params.id;
         const sql = `DELETE FROM productos WHERE id = ${id}`;
         conexion.query(sql, (error,results) => {
