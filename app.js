@@ -28,3 +28,13 @@ conexion.connect(function(error){
     app.listen('3000', function(){
         console.log("Servidor OK en puerto: 3000");
     })
+
+    app.get('/apijs/productos', (req,res)=>{
+        conexion.query('SELECT * FROM productos', (error,filas)=>{
+            if(error){
+                throw error;
+            }else{
+                res.send(filas);
+            }
+        });
+    });
